@@ -1,0 +1,34 @@
+{
+  "host": "localhost",
+  "port": 3030,
+  "public": "../public/",
+  "paginate": {
+    "default": 10,
+    "max": 50
+  },
+  "mongodb": "mongodb://localhost:27017/evoluation",
+  "authentication": {
+    "secret": "b7e723ce418864a2ef5ed575304490f43c6cb6218b2bcc4b035af24722e8106e85df479511dcf03d7798d6d201c3944a28a6fcc68d40bc5601ea7284154d311ae028696295866359d9756e23c40c01bc53b5f444e30b701fede8b5d8ddaca64f906c1e3b47e7a9f6c93359f90fd9bc4d32ecf52641db3ba637af56d80256416c3d7678eb5f63e2aec1321b84320312eacd619883d80ff94736546cf401fd99f1e15cd3eb8068dd8cdd15d29eb91fb6bdc5ee909c508328537e0eb435ee047ace24174ec5d14966418e01e570d62febaff3a9ad1e100dba87c713d2ab5b26fd9e3b684345485da944e0be3bfe25f6785f7137107dbd2e066bc86e84d252371a20",
+    "strategies": [
+      "jwt",
+      "local"
+    ],
+    "path": "/authentication",
+    "service": "users",
+    "jwt": {
+      "header": {
+        "type": "access"
+      },
+      "audience": "https://yourdomain.com",
+      "subject": "anonymous",
+      "issuer": "feathers",
+      "algorithm": "HS256",
+      "expiresIn": "1d"
+    },
+    "local": {
+      "entity": "user",
+      "usernameField": "email",
+      "passwordField": "password"
+    }
+  }
+}

@@ -3,8 +3,8 @@
   "port": 3030,
   "public": "../public/",
   "paginate": {
-    "default": 10,
-    "max": 50
+    "default": 50,
+    "max": 500
   },
   "mongodb": "mongodb://localhost:27017/evoluation",
   "authentication": {

@@ -10,42 +10,34 @@ const TYPES = [
 
 ]
 
-class RecipeEditor extends PureComponent {
+class StudentEditor extends PureComponent {
   constructor(props) {
     super()
 
-    const { name, summary, vegan, vegetarian, pescatarian, photo } = props
-    const { name, currentColor, evaluations, picture } = props
+    const { name, picture, currentColor, classId, evaluations } = props
 
     this.state = {
       name,
-      summary,
-      vegan,
-      vegetarian,
-      pescatarian,
-      photo,
+      picture,
+      classId,
+      currentColor,
+      evaluation,
     }
   }
 
-  updateTitle(event) {
+  updateName(event) {
     if (event.keyCode === 13) {
       event.preventDefault()
-      this.refs.summary.medium.elements[0].focus()
+      // this.refs.summary.medium.elements[0].focus()
     }
     this.setState({
       name: this.refs.name.value
     })
   }
 
-  updatePhoto(event) {
+  updatePicture(event) {
     this.setState({
-      photo: this.refs.photo.value
-    })
-  }
-
-  updateIntro(text, medium) {
-    this.setState({
-      summary: text
+      picture: this.refs.picture.value
     })
   }
 
@@ -58,27 +50,25 @@ class RecipeEditor extends PureComponent {
     })
   }
 
-  saveRecipe() {
+  saveStudent() {
     const {
       name,
-      summary,
-      vegetarian,
-      vegan,
-      pescatarian,
-      photo,
+      picture,
+      classId,
+      currentColor,
+      evaluation,
     } = this.state
 
-    const recipe = {
+    const student = {
+      picture,
       name,
-      summary: toMarkdown(summary),
-      vegetarian,
-      vegan,
-      pescatarian,
-      liked: false,
-      photo,
+      picture,
+      classId,
+      currentColor,
+      evaluation,
     }
 
-    console.log(recipe)
+    console.log(student)
   }
 
   render() {
@@ -88,27 +78,19 @@ class RecipeEditor extends PureComponent {
           type="text"
           ref="name"
           className="name"
-          placeholder="Title"
+          placeholder="Name"
           defaultValue={this.state.name}
-          onChange={this.updateTitle.bind(this)}
-          onKeyDown={this.updateTitle.bind(this)} />
-
-        <Editor
-          ref="summary"
-          options={{
-            placeholder: {text: 'Write an Introduction...'}
-          }}
-          onChange={this.updateIntro.bind(this)}
-          text={this.state.summary} />
+          onChange={this.updateName.bind(this)}
+          onKeyDown={this.updateName.bind(this)} />
 
         <input
           type="text"
-          ref="photo"
-          className="photo"
-          placeholder="Photo URL"
-          defaultValue={this.state.photo}
-          onChange={this.updatePhoto.bind(this)}
-          onKeyDown={this.updatePhoto.bind(this)} />
+          ref="picture"
+          className="picture"
+          placeholder="Picture URL"
+          defaultValue={this.state.picture}
+          onChange={this.updatePicture.bind(this)}
+          onKeyDown={this.updatePicture.bind(this)} />
 
         {TYPES.map((type) => {
           return <label key={type} htmlFor={type}>
@@ -118,11 +100,11 @@ class RecipeEditor extends PureComponent {
         })}
 
         <div className="actions">
-          <button className="primary" onClick={this.saveRecipe.bind(this)}>Save</button>
+          <button className="primary" onClick={this.saveStudent.bind(this)}>Save</button>
         </div>
       </div>
     )
   }
 }
 
-export default RecipeEditor
+export default StudentEditor

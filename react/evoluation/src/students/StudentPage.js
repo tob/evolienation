@@ -6,19 +6,22 @@ import Title from '../components/title'
 
 export class StudentPage extends PureComponent {
   static propTypes = {
-    title: PropTypes.string.isRequired,
-  }
+  _id: PropTypes.string,
+  name: PropTypes.string,
+  currentColor: PropTypes.string,
+  fetchRecipes: PropTypes.func.isRequired,
+}
 
   componentWillMount() {
     this.props.fetchStudents()
   }
 
   render() {
-    const { title } = this.props
+    const { name } = this.props
 
     return(
       <div className="student page">
-        <Title content={ title } />
+        <Title content={ name } />
       </div>
     )
   }

@@ -6,12 +6,13 @@ class Student extends PureComponent {
     const { _id, name, currentColor, evaluations, picture } = this.props
 
     return(
-      <article className="recipe">
+      <article className="student">
         <h1>{ name }</h1>
         <div>
           <p>{ currentColor }</p>
           <Link to={`/students/${_id}`}>{ name }</Link>
         </div>
+        <hr/>
       </article>
     )
   }

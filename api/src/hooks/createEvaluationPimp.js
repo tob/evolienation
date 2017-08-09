@@ -14,35 +14,25 @@ module.exports = function (options = {}) { // eslint-disable-line no-unused-vars
       break;
     default: var color = 'red';
     }
-    return color
-    debugger;
+    return color;
   }
 
-
-
-  /////////////////////////
   return function (hook) {
   // makeGroup('green')
     var color = pickColor();
-    debugger;
     return hook.app.service('students').find({
       query: { currentColor: color}
     }).then(group => {
       const lottery = group.data;
-  debugger;
       hook.data.color = color;
-      hook.data.remark = lottery;
+      hook.data.remark = '';
       hook.data.studentId = findLucky(lottery);
-
-      // IMPORTANT: always return the `hook` object in the end
       return hook;
     });
-    // const {evaluation} = hook.params;
-  }
+  };
 
 
   function findLucky(array) {
-    debugger;
     var student =   Math.floor(Math.random() * (array.length));
     var lucky = array[student];
     return lucky;

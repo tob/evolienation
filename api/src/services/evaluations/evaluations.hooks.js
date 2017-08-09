@@ -1,5 +1,5 @@
 const { authenticate } = require('feathers-authentication').hooks;
-const createEvaluation = require('../../hooks/createEvaluation');
+const createEvaluation = require('../../hooks/createEvaluationPimp');
 
 
 module.exports = {

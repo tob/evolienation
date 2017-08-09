@@ -1,6 +1,7 @@
 // src/students/StudentsList.js
 import Title from '../components/title'
 import Student from './Student'
+import StudentEditor from './StudentEditor'
 import React, { PureComponent, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import fetchStudents from '../actions/students/fetch'
@@ -28,6 +29,7 @@ class StudentsList extends PureComponent {
       <div className="students wrapper">
         <header>
           <Title content="Students" />
+          <StudentEditor />
         </header>
 
         <main>

@@ -1,15 +1,26 @@
 import React, { PureComponent } from 'react'
-import logo from './logo.svg';
-import './App.css';
-import Title from './components/title'
-import StudentsList from './students/StudentsList'
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
+import muiTheme from './assets/styles/theme'
+import PropTypes from 'prop-types'
+import Navigation from './components/navigation'
 
 class App extends PureComponent {
+  static childContextTypes = {
+      muiTheme: PropTypes.object.isRequired,
+    }
+
+    getChildContext() {
+      return { muiTheme }
+    }
+
   render() {
     return (
-      <div className="App">
-        { this.props.children }
-      </div>
+      <MuiThemeProvider muiTheme={muiTheme}>
+        <div className="App">
+        <Navigation />
+          { this.props.children }
+        </div>
+      </MuiThemeProvider>
     );
   }
 }

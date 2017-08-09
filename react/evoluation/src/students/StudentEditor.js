@@ -1,3 +1,5 @@
+//Editor Component for students
+
 import React, { PureComponent } from 'react'
 import Editor from 'react-medium-editor'
 import toMarkdown from 'to-markdown'
@@ -48,28 +50,54 @@ class StudentEditor extends PureComponent {
     })
   }
 
-  saveStudent() {
-    const {
-      name,
-      picture,
-      classId,
-      currentColor,
-      evaluation,
-    } = this.state
+////////////////////////////////////////////////////
+studentState() {
+  const {
+    name,
+    picture,
+    classId,
+    currentColor,
+    evaluation,
+  } = this.state
 
-    const student = {
-      picture,
-      name,
-      picture,
-      classId,
-      currentColor,
-      evaluation,
-    }
-
-    console.log(student)
+  const student = {
+    name,
+    picture,
+    classId,
+    currentColor,
+    evaluation,
   }
 
+  console.log(student)
+}
+
+  isValid() {
+    const student = this.studentState()
+
+    let errors = {}
+
+    if (!student.name) errors.name = 'Please provide a name!'
+    if (!student.picture) errors.picture = 'Please provide a picture!'
+
+    this.setState({ errors })
+
+    return Object.keys(errors).length === 0
+  }
+
+  saveStudent() {
+    debugger
+    if (!this.isValid()) return
+
+    const student = this.studentState()
+
+    this.props.createStudent(
+      Object.assign({}, student, { evaluation: toMarkdown(student.currentColor)}))
+  }
+////////////////////////////////////////////////////
+
+
   render() {
+    const { errors } = this.state
     return (
       <div className="editor">
         <input

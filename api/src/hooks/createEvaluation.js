@@ -1,5 +1,4 @@
-
-  // var red = students.filter(student =>  student.currentColor === "red");
+// var red = students.filter(student =>  student.currentColor === "red");
 
 // //Algorithm starts
 // function pickStudent() {
@@ -36,23 +35,23 @@
 
 
 module.exports = function (options = {}) { // eslint-disable-line no-unused-vars
-  return function (hook) {
-    // makeGroup('green')
-    return hook.app.service('students').find({
-      query: { currentColor: 'green'}
-    }).then(group => {
-      const green = group.data;
+return function (hook) {
+  // makeGroup('green')
+  return hook.app.service('students').find({
+    query: { currentColor: 'green'}
+  }).then(group => {
+    const green = group.data;
 
-      hook.data.color = 'pistacchio';
-      hook.data.remark = green;
-      hook.data.studentId = 'green';
+    hook.data.color = 'pistacchio';
+    hook.data.remark = green;
+    hook.data.studentId = 'green';
 
-      // IMPORTANT: always return the `hook` object in the end
-      return hook;
-    });
+    // IMPORTANT: always return the `hook` object in the end
+    return hook;
+  });
 
-    // const {evaluation} = hook.params;
-  };
+  // const {evaluation} = hook.params;
+};
 };
 
 // hook.data.color = 'red';

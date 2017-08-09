@@ -26,7 +26,7 @@ export default (user) => {
       .catch((error) => {
         dispatch(loading(false))
         dispatch(loadError(error))
-        history.push('/SignUp')
+        history.push('/SignIn')
       })
   }
 }

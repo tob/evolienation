@@ -22,21 +22,20 @@ module.exports = function (options = {}) { // eslint-disable-line no-unused-vars
     var color = pickColor();
     return hook.app.service('students').find({
       query: { currentColor: color}
-    }).then(group => {
-      const lottery = group.data;
-      hook.data.color = color;
-      hook.data.remark = '';
-      hook.data.studentId = findLucky(lottery);
-      return hook;
-    });
+    })
+      .then(group => {
+        const lottery = group.data;
+        hook.data.color = color;
+        hook.data.remark = 'Nzo é brutto';
+        hook.data.studentId = findLucky(lottery);
+        return hook;
+      });
   };
-
 
   function findLucky(array) {
     var student =   Math.floor(Math.random() * (array.length));
     var lucky = array[student];
     return lucky;
   }
-
 
 };

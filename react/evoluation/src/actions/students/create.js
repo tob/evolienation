@@ -9,8 +9,6 @@ export default (newStudent) => {
   return (dispatch) => {
     dispatch(loading(true))
 
-    api.app.authenticate()
-      .then(() => {
         api.service('students')
           .create(newStudent)
           .then((result) => {
@@ -21,10 +19,5 @@ export default (newStudent) => {
             dispatch(loading(false))
             dispatch(loadError(error))
           })
-      })
-      .catch(() => {
-        dispatch(loading(false))
-        dispatch(authError())
-      })
-  }
+      }
 }

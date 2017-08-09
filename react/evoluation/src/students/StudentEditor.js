@@ -1,5 +1,4 @@
 //Editor Component for students
-
 import React, { PureComponent } from 'react'
 import Editor from 'react-medium-editor'
 import toMarkdown from 'to-markdown'
@@ -8,17 +7,27 @@ import 'medium-editor/dist/css/medium-editor.css'
 import 'medium-editor/dist/css/themes/default.css'
 import Select from 'react-select';
 import createStudent from '../actions/students/create'
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
+import ContentRemove from 'material-ui/svg-icons/content/remove';
 
 // Be sure to include styles at some point, probably during your bootstrapping
 import 'react-select/dist/react-select.css';
 
+const style = {
+  marginRight: 20,
+};
+const yellow = {yellow
+};
 
 
 class StudentEditor extends PureComponent {
+
   constructor(props) {
     super()
 
     const { name, picture, currentColor, classId, evaluations } = props
+
     this.state = {
       name,
       picture,
@@ -28,56 +37,24 @@ class StudentEditor extends PureComponent {
     }
   }
 
-  updateName(event) {
+  updateStudent(event) {
     if (event.keyCode === 13) {
       event.preventDefault()
       // this.refs.summary.medium.elements[0].focus()
     }
     this.setState({
-      name: this.refs.name.value
+      name: this.refs.name.value,
+      // name: 'this is a name'
+      picture: this.refs.picture.value,
     })
   }
-
-  updatePicture(event) {
-    this.setState({
-      picture: this.refs.picture.value
-    })
-  }
-
-  updateCurrentColor(event) {
-    this.setState({
-      currentColor: this.refs.currentColor.value
-    })
-  }
-
-////////////////////////////////////////////////////
-studentState() {
-  const {
-    name,
-    picture,
-    classId,
-    currentColor,
-    evaluation,
-  } = this.state
-
-  const student = {
-    name,
-    picture,
-    classId,
-    currentColor,
-    evaluation,
-  }
-
-  console.log(student)
-}
 
   isValid() {
-    const student = this.studentState()
-
+    const student = this.state
+    debugger
     let errors = {}
 
     if (!student.name) errors.name = 'Please provide a name!'
-    if (!student.picture) errors.picture = 'Please provide a picture!'
 
     this.setState({ errors })
 
@@ -88,10 +65,10 @@ studentState() {
     debugger
     if (!this.isValid()) return
 
-    const student = this.studentState()
-
+    const student = this.state
+    debugger;
     this.props.createStudent(
-      Object.assign({}, student, { evaluation: toMarkdown(student.currentColor)}))
+      Object.assign({},student))
   }
 ////////////////////////////////////////////////////
 
@@ -106,8 +83,9 @@ studentState() {
           className="name"
           placeholder="Name"
           defaultValue={this.state.name}
-          onChange={this.updateName.bind(this)}
-          onKeyDown={this.updateName.bind(this)} />
+          onChange={this.updateStudent.bind(this)}
+          onKeyDown={this.updateStudent.bind(this)}
+          />
 
         <input
           type="text"
@@ -115,8 +93,21 @@ studentState() {
           className="picture"
           placeholder="Picture URL"
           defaultValue={this.state.picture}
-          onChange={this.updatePicture.bind(this)}
-          onKeyDown={this.updatePicture.bind(this)} />
+          onChange={this.updateStudent.bind(this)}
+          onKeyDown={this.updateStudent.bind(this)}
+           />
+
+        <div>
+        <FloatingActionButton secondary style={style}>
+          <ContentAdd />
+        </FloatingActionButton>
+        <FloatingActionButton backgroundColor={"yellow"} style={style}>
+          <ContentRemove />
+        </FloatingActionButton>
+        <FloatingActionButton style={style}>
+          <ContentRemove />
+        </FloatingActionButton>
+        </div>
 
         <div className="actions">
           <button className="primary" onClick={this.saveStudent.bind(this)}>Save</button>

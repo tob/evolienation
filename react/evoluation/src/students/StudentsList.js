@@ -5,20 +5,21 @@ import StudentEditor from './StudentEditor'
 import React, { PureComponent, PropTypes } from 'react'
 import { connect } from 'react-redux'
 import fetchStudents from '../actions/students/fetch'
+import subscribeToStudentsService from '../actions/students/subscribe'
 
 
 
 class StudentsList extends PureComponent {
-
   static propTypes = {
       students: PropTypes.array.isRequired,
       fetchStudents: PropTypes.func.isRequired,
+      subscribeToStudentsService: PropTypes.func.isRequired
     }
 
   componentWillMount() {
       this.props.fetchStudents()
-    }
-
+      this.props.subscribeToStudentsService()
+  }
 
   renderStudent(student, index) {
     return <Student key={index} { ...student } />
@@ -40,8 +41,11 @@ class StudentsList extends PureComponent {
   }
 }
 
-const mapStateToProps = ({ students }) => ({
-  students
-})
+const mapStateToProps = (store) => {
+  debugger
+  return {
+    students: store.students
+  }
+}
 
-export default connect(mapStateToProps, { fetchStudents })(StudentsList)
+export default connect(mapStateToProps, { fetchStudents, subscribeToStudentsService })(StudentsList)

@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import fetchStudents from '../actions/students/fetch'
 import Title from '../components/title'
+import StudentEditor from './StudentEditor'
 
 export class StudentPage extends PureComponent {
   static propTypes = {
@@ -24,6 +25,7 @@ export class StudentPage extends PureComponent {
     return(
       <div className="student page">
         <Title content={ name } />
+        <StudentEditor />
       </div>
     )
   }

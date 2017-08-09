@@ -10,6 +10,7 @@ import createStudent from '../actions/students/create'
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import ContentRemove from 'material-ui/svg-icons/content/remove';
+import ContentBlock from 'material-ui/svg-icons/content/block';
 
 // Be sure to include styles at some point, probably during your bootstrapping
 import 'react-select/dist/react-select.css';
@@ -17,17 +18,12 @@ import 'react-select/dist/react-select.css';
 const style = {
   marginRight: 20,
 };
-const yellow = {yellow
-};
 
 
 class StudentEditor extends PureComponent {
-
   constructor(props) {
     super()
-
     const { name, picture, currentColor, classId, evaluations } = props
-
     this.state = {
       name,
       picture,
@@ -46,12 +42,13 @@ class StudentEditor extends PureComponent {
       name: this.refs.name.value,
       // name: 'this is a name'
       picture: this.refs.picture.value,
+      currentColor: this.refs.currentColor.props.backgroundColor,
     })
   }
 
   isValid() {
     const student = this.state
-    debugger
+
     let errors = {}
 
     if (!student.name) errors.name = 'Please provide a name!'
@@ -62,11 +59,11 @@ class StudentEditor extends PureComponent {
   }
 
   saveStudent() {
-    debugger
+
     if (!this.isValid()) return
 
     const student = this.state
-    debugger;
+
     this.props.createStudent(
       Object.assign({},student))
   }
@@ -98,13 +95,27 @@ class StudentEditor extends PureComponent {
            />
 
         <div>
-        <FloatingActionButton secondary style={style}>
+        <FloatingActionButton secondary
+
+        /////////
+
+        // Create a new function that does both Create evaluation and save color to props.
+          onClick={this.updateStudent.bind(this)}
+
+        ////////
+          ref="currentColor"
+          backgroundColor={"green"}
+          style={style}>
           <ContentAdd />
         </FloatingActionButton>
-        <FloatingActionButton backgroundColor={"yellow"} style={style}>
-          <ContentRemove />
+        <FloatingActionButton
+          onClick={this.updateStudent.bind(this)}
+          ref="currentColor"
+          backgroundColor={"yellow"}
+          style={style}>
+          <ContentBlock />
         </FloatingActionButton>
-        <FloatingActionButton style={style}>
+        <FloatingActionButton onClick={this.updateStudent.bind(this)} ref="currentColor" backgroundColor={"red"} style={style}>
           <ContentRemove />
         </FloatingActionButton>
         </div>

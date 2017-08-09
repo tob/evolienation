@@ -40,10 +40,20 @@ export class SignIn extends PureComponent {
 
   submitForm(event) {
     const user = {
-      email: this.refs.email.getValue(),
-      password: this.refs.password.getValue()
+      email: this.refs.email.input.value.toString('base64'),
+      password: this.refs.password.input.value.toString('base64')
     }
+    
     this.props.signIn(user)
+    // const user = this.state
+    // if (event.keyCode === 13) {
+    //   event.preventDefault()
+    // }
+    // this.setState({
+    //   email: this.refs.email.value,
+    //   password: this.refs.password.value
+    // })
+    // this.props.signIn(user)
   }
 
   render() {

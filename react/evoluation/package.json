@@ -6,7 +6,7 @@
     "feathers": "^2.1.7",
     "feathers-authentication-client": "^0.3.3",
     "feathers-hooks": "^2.0.2",
-    "feathers-rest": "^1.8.0",
+    "feathers-socketio": "^2.0.0",
     "markdown": "^0.5.0",
     "material-ui": "^0.17.0",
     "prop-types": "^15.5.10",
@@ -21,7 +21,7 @@
     "react-tap-event-plugin": "^2.0.1",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0",
-    "superagent": "^3.5.2",
+    "socket.io-client": "^2.0.3",
     "to-markdown": "^3.1.0"
   },
   "scripts": {

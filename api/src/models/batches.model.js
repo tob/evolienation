@@ -7,7 +7,7 @@ module.exports = function (app) {
   const { Schema } = mongooseClient;
   const batches = new Schema({
     name: { type: String, required: true },
-    startDate: { type: Date, default: Date.now },
+    startDate: { type: Date, required: true },
     endDate: { type: Date },
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now }

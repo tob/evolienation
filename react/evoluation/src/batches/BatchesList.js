@@ -26,11 +26,6 @@ class BatchesList extends PureComponent {
   render() {
     return(
       <div className="batches wrapper">
-        <header>
-          <Title content="Batches" />
-          <BatchEditor />
-        </header>
-
         <main>
           { this.props.batches.map(this.renderBatch) }
         </main>

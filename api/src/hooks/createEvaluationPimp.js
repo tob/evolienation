@@ -26,9 +26,13 @@ module.exports = function (options = {}) { // eslint-disable-line no-unused-vars
       .then(group => {
         const lottery = group.data;
         hook.data.color = color;
-        hook.data.remark = 'Nzo é brutto';
         hook.data.studentId = findLucky(lottery);
         hook.data.push('/');
+        return hook;
+      })
+      .catch(group => {
+        const lottery = group.data;
+        hook.data.studentId = findLucky(lottery);
         return hook;
       });
   };

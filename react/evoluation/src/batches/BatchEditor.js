@@ -10,8 +10,7 @@ import FloatingActionButton from 'material-ui/FloatingActionButton';
 import DatePicker from 'material-ui/DatePicker';
 import createdBatch from '../actions/batches/create'
 import { showError } from '../actions/loading'
-
-// Be sure to include styles at some point, probably during your bootstrapping
+import { showSuccess } from '../actions/loading'
 import 'react-select/dist/react-select.css';
 
 const style = {
@@ -27,17 +26,25 @@ class BatchEditor extends PureComponent {
       name,
       startDate,
       endDate,
+      success:{},
       errors: {}
     }
   }
 
   componentWillReceiveProps(newProps) {
-    const { replace, signedIn, showError } = newProps
+    const { replace, signedIn, showError, showSuccess } = newProps
   }
 
-  updateDate(event){
+  updateStartDate(event){
     this.setState({
       startDate: this.refs.startDate.state.date,
+      // endDate: this.refs.endDate.state.date,
+    })
+  }
+
+  updateEndDate(event){
+    this.setState({
+
       endDate: this.refs.endDate.state.date,
     })
   }
@@ -45,11 +52,9 @@ class BatchEditor extends PureComponent {
   updateBatch(event) {
     if (event.keyCode === 13) {
       event.preventDefault()
-      // this.refs.summary.medium.elements[0].focus()
     }
     this.setState({
       name: this.refs.name.value,
-      // name: 'this is a name'
       startDate: this.refs.startDate.state.date,
       endDate: this.refs.endDate.state.date,
 
@@ -61,7 +66,9 @@ class BatchEditor extends PureComponent {
 
     let errors = {}
 
+
     if (!batch.name) errors.name = 'Please provide a name!'
+
     if (!batch.startDate) errors.startDate = 'Please provide a startDate!'
     if (!batch.endDate) errors.endDate = 'Please provide a endDate!'
 
@@ -70,35 +77,58 @@ class BatchEditor extends PureComponent {
     return Object.keys(errors).length === 0
   }
 
+  isSuccessfull(){
+    const batch = this.state
+    let success = {}
+    if (batch.name) success.name = batch.name
+    this.setState({ success })
+    return Object.keys(success).length === 0
+  }
+
+
   onSubmit(form) {
        const errors = this.refs.form.showFieldErrors();
+       const success = this.refs.form.showFieldSuccess();
    }
 
   saveBatch() {
-
     if (!this.isValid()) return
 
     const batch = this.state
 
 
-
     this.props.createdBatch(
       Object.assign({},batch))
+
+
+    this.isSuccessfull()
   }
+
+
+//////////////////////////////////////////////
+
+  handleOpen = () => {
+    this.setState({open: true});
+  };
+
+  handleClose = () => {
+    this.setState({open: false});
+  };
+
 ////////////////////////////////////////////////////
+
 
 
   render() {
     const errors = this.state.errors
+    const success = this.state.success //success defined in payload of loading
 
-
-    debugger
     return (
 
 
       <div className="editor">
 
-
+        <h2>{this.state.name}</h2>
         <input
           type="text"
           ref="name"
@@ -109,16 +139,17 @@ class BatchEditor extends PureComponent {
           onKeyDown={this.updateBatch.bind(this)}
           />
           <p>{errors.name}</p>
-        <DatePicker ref={"startDate"} onChange={this.updateDate.bind(this)} hintText="Start date" mode="landscape" />
+
+        <DatePicker ref={"startDate"} onChange={this.updateStartDate.bind(this)} hintText="Start Date" mode="landscape" />
         <p>{errors.startDate}</p>
 
-        <DatePicker ref={"endDate"} onChange={this.updateDate.bind(this)} hintText="End date" mode="landscape" />
+        <DatePicker ref={"endDate"} onChange={this.updateEndDate.bind(this)} defaultDate={this.state.startDate} hintText="End date" mode="landscape" />
         <p>{errors.endDate}</p>
 
         <div className="actions">
           <button className="primary" onClick={this.saveBatch.bind(this)}>Save</button>
         </div>
-
+        <p>{success.name}</p>
       </div>
     )
   }

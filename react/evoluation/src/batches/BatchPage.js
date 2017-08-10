@@ -6,6 +6,8 @@ import { connect } from 'react-redux'
 import fetchBatches from '../actions/batches/fetch'
 import Title from '../components/title'
 import BatchEditor from './BatchEditor'
+import BatchesList from './BatchesList'
+import EvaluationEditor from '../evaluations/evalEditor'
 
 export class BatchPage extends PureComponent {
   static propTypes = {
@@ -20,12 +22,18 @@ export class BatchPage extends PureComponent {
   }
 
   render() {
-    const { name } = this.props
+    const { name, startDate, endDate } = this.props
 
     return(
       <div className="batch page">
-        <Title content={ name } />
-        <BatchEditor />
+
+        <header>
+          <Title content="Batches" />
+          <Title content={ name } />
+          <BatchEditor />
+          <EvaluationEditor />
+        </header>
+        <BatchesList />
       </div>
     )
   }

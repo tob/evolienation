@@ -13,10 +13,12 @@ export const loadError = (error) => ({
   payload: error
 })
 
-export const loadSuccess = () => ({
-  type: LOAD_SUCCESS
+export const loadSuccess = (success) => ({
+  type: LOAD_SUCCESS,
+  payload: success
 })
 
-export const authError = () => ({
-  type: AUTH_ERROR
+export const authError = (error) => ({
+  type: AUTH_ERROR,
+  payload: error
 })

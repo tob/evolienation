@@ -23,6 +23,7 @@ ReactDOM.render(
       <Route path="/" component={App}>
         <IndexRoute component={BatchesList} />
         <Route path="/students/:studentId" component={StudentPage} />
+        <Route path="/students/" component={StudentsList} />
         <Route path="/batches/" component={BatchesList} />
         <Route path="/batches/:batchId" component={BatchPage} />
         <Route path="/SignIn" component={SignIn} />

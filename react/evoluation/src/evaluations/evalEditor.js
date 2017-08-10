@@ -47,12 +47,9 @@ class EvaluationEditor extends PureComponent {
     this.setState({
       color: this.refs.color.props.backgroundColor,
     })
-    debugger
   }
 
   updateDate(event){
-
-    debugger
     this.setState({
       date: this.refs.Date.state.date,
     })
@@ -62,15 +59,18 @@ class EvaluationEditor extends PureComponent {
     // if (event.keyCode === 13) {
     //   event.preventDefault()
     // }
+
     this.setState({
       color: this.refs.color.props.backgroundColor,
+      date: this.refs.Date.state.date,
+      remark: this.refs.remark.value
     })
   }
 
   isValid() {
     const evaluation = this.state
     let errors = {}
-    if (!evaluation.color) errors.color = 'Please provide a name!'
+    if (!evaluation.color) errors.color = 'Please provide a color!'
     this.setState({ errors })
     return Object.keys(errors).length === 0
   }
@@ -90,7 +90,7 @@ class EvaluationEditor extends PureComponent {
    }
 
   saveEvaluation() {
-    // if (!this.isValid()) return
+    if (!this.isValid()) return
 
     const evaluation = this.state
 
@@ -172,7 +172,11 @@ class EvaluationEditor extends PureComponent {
               style={style}>
               <ContentBlock />
             </FloatingActionButton>
-            <FloatingActionButton onClick={this.updateColor.bind(this)} ref="color" backgroundColor={"red"} style={style}>
+            <FloatingActionButton
+              onClick={this.updateColor.bind(this)}
+              ref="color"
+              backgroundColor={"red"}
+              style={style}>
               <ContentRemove />
             </FloatingActionButton>
             </div>

@@ -24,7 +24,6 @@ class StudentsList extends PureComponent {
   }
 
   render() {
-    debugger
     return(
       <div className="students wrapper">
         <header>

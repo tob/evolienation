@@ -7,6 +7,7 @@ import fetchBatches from '../actions/batches/fetch'
 import Title from '../components/title'
 import BatchEditor from './BatchEditor'
 import BatchesList from './BatchesList'
+import StudentsList from '../students/StudentsList'
 import EvaluationEditor from '../evaluations/evalEditor'
 
 export class BatchPage extends PureComponent {
@@ -14,7 +15,7 @@ export class BatchPage extends PureComponent {
   _id: PropTypes.string,
   name: PropTypes.string,
   currentColor: PropTypes.string,
-  fetchRecipes: PropTypes.func.isRequired,
+  fetchBatches: PropTypes.func.isRequired,
 }
 
   componentWillMount() {
@@ -33,7 +34,7 @@ export class BatchPage extends PureComponent {
           <BatchEditor />
           <EvaluationEditor />
         </header>
-        <BatchesList />
+        <StudentsList />
       </div>
     )
   }

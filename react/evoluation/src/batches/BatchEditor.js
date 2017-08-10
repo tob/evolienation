@@ -11,6 +11,7 @@ import DatePicker from 'material-ui/DatePicker';
 import createdBatch from '../actions/batches/create'
 import { showError } from '../actions/loading'
 import { showSuccess } from '../actions/loading'
+import StudentEditor from '../students/StudentEditor'
 import 'react-select/dist/react-select.css';
 
 const style = {
@@ -81,6 +82,8 @@ class BatchEditor extends PureComponent {
     const batch = this.state
     let success = {}
     if (batch.name) success.name = batch.name
+    if (batch.startDate) success.startDate = batch.startDate
+    if (batch.endDate) success.endDate = batch.endDate
     this.setState({ success })
     return Object.keys(success).length === 0
   }
@@ -127,8 +130,9 @@ class BatchEditor extends PureComponent {
 
 
       <div className="editor">
-
-        <h2>{this.state.name}</h2>
+        <div>
+          <h2>{this.state.name}</h2>
+        </div>
         <input
           type="text"
           ref="name"
@@ -149,6 +153,8 @@ class BatchEditor extends PureComponent {
         <div className="actions">
           <button className="primary" onClick={this.saveBatch.bind(this)}>Save</button>
         </div>
+        <p>{success.name}</p>
+        <p>{success.startDate}</p>
         <p>{success.name}</p>
       </div>
     )

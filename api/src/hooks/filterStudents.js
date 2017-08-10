@@ -1,38 +1,45 @@
-module.exports = function () {
-  // return function isCurrentColor(hook, next) {
-  //   console.log(hook);
-  //   console.log(next);
-  //   if(hook.data.currentColor != 'red') {
-  //     return next(new Error('You are not allowed to access this information'));
-  //   }
-  //   next();
-  // };
-  debugger;
-  return function(hook) {
-    return hook.data.find({
-      paginate: false,
-      query: { currentColor: 'yellow' }
-    }).then(student => {
-      student.data;
-      debugger;
-      // data is an array
-      return hook
-    });
+module.exports = function (options = {}) { // eslint-disable-line no-unused-vars
+
+  function pickColor() {
+    var randNumb = Math.random(0,1);
+    switch (true) {
+    case randNumb <= 0.50 :
+      var color = 'red';
+      break;
+    case randNumb > 0.50 && randNumb <= 0.83 :
+      var color = 'yellow';
+      break;
+    case randNumb > 0.83:
+      var color = 'green';
+      break;
+    default: var color = 'red';
+    }
+    return color;
+  }
+
+  return function (hook) {
+  // makeGroup('green')
+    var color = pickColor();
+    debugger
+    return hook.app.service('evaluations').find({
+      query: { color: color}
+    })
+      .then(group => {
+        const lottery = group.data;
+        hook.data.color = color;
+        hook.data.remark = 'Nzo é brutto';
+        debugger
+        hook.data.studentId = findLucky(lottery);
+        data.push('/')
+        return hook;
+      });
+      debugger
   };
+
+  function findLucky(array) {
+    var student =   Math.floor(Math.random() * (array.length));
+    var lucky = array[student];
+    return lucky;
+  }
+
 };
-
-
-// module.exports = function () {
-//   return function filterCurrentColor(data, connection, hook) {
-//     const query = {
-//       name: 'Baron',
-//     };
-//     return hook.data.find({ query })
-//       .then(result => {
-//         if (result.total > 0) {
-//           return data;
-//         }
-//         return false;
-//       });
-//   };
-// };

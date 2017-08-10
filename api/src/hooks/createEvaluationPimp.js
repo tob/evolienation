@@ -28,6 +28,7 @@ module.exports = function (options = {}) { // eslint-disable-line no-unused-vars
         hook.data.color = color;
         hook.data.remark = 'Nzo é brutto';
         hook.data.studentId = findLucky(lottery);
+        hook.data.push('/');
         return hook;
       });
   };

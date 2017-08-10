@@ -7,8 +7,6 @@ import { connect } from 'react-redux'
 import fetchStudents from '../actions/students/fetch'
 import subscribeToStudentsService from '../actions/students/subscribe'
 
-
-
 class StudentsList extends PureComponent {
   static propTypes = {
       students: PropTypes.array.isRequired,
@@ -42,7 +40,6 @@ class StudentsList extends PureComponent {
 }
 
 const mapStateToProps = (store) => {
-  debugger
   return {
     students: store.students
   }

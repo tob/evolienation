@@ -15,7 +15,20 @@ module.exports = {
   before: {
     all: [],
     find: [],
-    get: [ ...restrict  ],
+    get: [
+      // function(hook) {
+      //   const userId = hook.result.userId;
+      //
+      //   // hook.app.service('users').get returns a Promise already
+      //   return hook.app.service('users').get(userId).then(user => {
+      //     // Update the result (the message)
+      //     hook.result.user = user;
+      //
+      //     // Returning will resolve the promise with the `hook` object
+      //     return hook;
+      //   });
+      // } 
+     ],
     create: [ hashPassword() ],
     update: [ ...restrict, hashPassword() ],
     patch: [ ...restrict, hashPassword() ],

@@ -2,7 +2,7 @@ import { USER_SIGNED_IN } from '../actions/users/SignIn'
 import { USER_SIGNED_OUT } from '../actions/users/SignOut'
 import { AUTH_ERROR } from '../actions/loading'
 
-const USER_STORAGE_KEY = 'evoluation-api-user'
+const USER_STORAGE_KEY = 'evoluation-api'
 const currentUser = JSON.parse(
   window.localStorage.getItem(USER_STORAGE_KEY) || 'null')
 

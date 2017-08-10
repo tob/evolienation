@@ -13,7 +13,7 @@ const restrict = [
 module.exports = {
   before: {
     all: [],
-    find: [],
+    find: [filterStudents()],
     get: [],
     create: [],
     update: [...restrict],

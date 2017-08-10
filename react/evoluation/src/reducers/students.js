@@ -1,5 +1,5 @@
 import { FETCHED_STUDENTS } from '../actions/students/fetch'
-import { CREATE_STUDENT } from '../actions/students/create'
+import { STUDENT_CREATED } from '../actions/students/subscribe'
 
  // const students =
 
@@ -9,7 +9,7 @@ export default (state = [], { type, payload } = {})  => {
     case FETCHED_STUDENTS :
       return [].concat(payload)
 
-    case CREATE_STUDENT :
+    case STUDENT_CREATED :
       return [Object.assign({}, payload)].concat(state)
 
     default :

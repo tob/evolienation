@@ -4,6 +4,11 @@ import muiTheme from './assets/styles/theme'
 import PropTypes from 'prop-types'
 import Navigation from './components/navigation'
 
+
+  var injectTapEventPlugin = require("react-tap-event-plugin");
+  injectTapEventPlugin();
+
+
 class App extends PureComponent {
   static childContextTypes = {
       muiTheme: PropTypes.object.isRequired,
@@ -12,6 +17,8 @@ class App extends PureComponent {
     getChildContext() {
       return { muiTheme }
     }
+
+
 
   render() {
     return (

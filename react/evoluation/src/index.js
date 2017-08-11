@@ -12,6 +12,7 @@ import StudentsList from './students/StudentsList'
 import StudentPage from './students/StudentPage'
 import BatchesList from './batches/BatchesList'
 import BatchPage from './batches/BatchPage'
+import EvalPage from './evaluations/EvalPage'
 import App from './App'
 import SignIn from './users/components/SignIn'
 
@@ -23,6 +24,7 @@ ReactDOM.render(
       <Route path="/" component={App}>
         <IndexRoute component={BatchesList} />
         <Route path="/students/:studentId" component={StudentPage} />
+        <Route path="/evaluations/:evaluationId/" component={EvalPage} />
         <Route path="/students/" component={StudentsList} />
         <Route path="/batches/" component={BatchesList} />
         <Route path="/batches/:batchId" component={BatchPage} />

@@ -162,4 +162,17 @@ class BatchEditor extends PureComponent {
 }
 
 
+const mapStateToProps = ({ evaluations }, { params }) => {
+  const evaluation = evaluations.reduce((prev, next) => {
+    if (next._id === params.evaluationId) {
+      return next
+    }
+    return prev
+  }, {})
+
+  return {
+    ...evaluation
+  }
+}
+
 export default connect(null, { createdBatch })(BatchEditor)

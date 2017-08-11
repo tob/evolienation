@@ -18,6 +18,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 import ContentRemove from 'material-ui/svg-icons/content/remove';
 import ContentBlock from 'material-ui/svg-icons/content/block';
+import { Link } from 'react-router'
 
 const style = {
   marginRight: 20,
@@ -27,13 +28,15 @@ const style = {
 class EvaluationEditor extends PureComponent {
   constructor(props) {
     super()
-    const { color, remark, date, studentId} = props
+    const { _id, color, remark, date, studentId} = props
     this.state = {
+      _id,
       color,
       remark,
       date,
       studentId,
       open: false,
+      disabled:false,
       success:{},
       errors: {}
     }
@@ -44,10 +47,17 @@ class EvaluationEditor extends PureComponent {
   }
 
   updateColor(event){
+    const toggle = this.state.disabled
+
     this.setState({
       color: this.refs.color.props.backgroundColor,
+      disabled: !toggle
     })
+
+    debugger;
+
   }
+
 
   updateDate(event){
     this.setState({
@@ -70,7 +80,7 @@ class EvaluationEditor extends PureComponent {
   isValid() {
     const evaluation = this.state
     let errors = {}
-    if (!evaluation.color) errors.color = 'Please provide a color!'
+    if (!evaluation.color) errors.color = 'How good was the answer?'
     this.setState({ errors })
     return Object.keys(errors).length === 0
   }
@@ -111,6 +121,7 @@ class EvaluationEditor extends PureComponent {
 
 
   render() {
+    const { _id } = this.props
     const errors = this.state.errors
     const success = this.state.success //success defined in payload of loading
     const actions = [
@@ -141,6 +152,9 @@ class EvaluationEditor extends PureComponent {
           <div className="editor">
 
             <p>{errors.studentId}</p>
+            <div>
+            {this.state.studentId}
+            </div>
 
             <h2>{this.state.remark}</h2>
             <input
@@ -154,7 +168,7 @@ class EvaluationEditor extends PureComponent {
               />
               <p>{errors.remark}</p>
 
-            <DatePicker ref={"Date"} onChange={this.updateDate.bind(this)} hintText="Date" mode="landscape" />
+            <DatePicker ref={"Date"} onChange={this.updateDate.bind(this)} defaultDate={this.props.Date} hintText="Date" mode="landscape" />
             <p>{errors.date}</p>
 
             <div>
@@ -162,6 +176,7 @@ class EvaluationEditor extends PureComponent {
               onClick={this.updateColor.bind(this)}
               ref="color"
               backgroundColor={"green"}
+              // disabled={this.state.disabled}
               style={style}>
               <ContentAdd />
             </FloatingActionButton>
@@ -169,6 +184,7 @@ class EvaluationEditor extends PureComponent {
               onClick={this.updateColor.bind(this)}
               ref="color"
               backgroundColor={"yellow"}
+              disabled={this.state.disabled}
               style={style}>
               <ContentBlock />
             </FloatingActionButton>
@@ -176,6 +192,7 @@ class EvaluationEditor extends PureComponent {
               onClick={this.updateColor.bind(this)}
               ref="color"
               backgroundColor={"red"}
+              disabled={this.state.disabled}
               style={style}>
               <ContentRemove />
             </FloatingActionButton>
@@ -187,12 +204,15 @@ class EvaluationEditor extends PureComponent {
               <button className="primary" onClick={this.saveEvaluation.bind(this)}>Save</button>
             </div>
             <p>{success.name}</p>
+            <Link to={`/evaluations/${_id}`}>{this.state.remark}</Link>
           </div>
       </Dialog>
     </div>
     )
   }
 }
+
+
 
 
 export default connect(null, { createdEvaluation })(EvaluationEditor)

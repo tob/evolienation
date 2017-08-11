@@ -9,6 +9,8 @@ import BatchEditor from './BatchEditor'
 import BatchesList from './BatchesList'
 import StudentsList from '../students/StudentsList'
 import EvaluationEditor from '../evaluations/evalEditor'
+import EvaluationList from '../evaluations/EvaluationsList'
+
 
 export class BatchPage extends PureComponent {
   static propTypes = {
@@ -31,10 +33,12 @@ export class BatchPage extends PureComponent {
         <header>
           <Title content="Batches" />
           <Title content={ name } />
+          <EvaluationList />
           <BatchEditor />
           <EvaluationEditor />
         </header>
-        <StudentsList />
+        // <StudentsList />
+        <EvaluationList />
       </div>
     )
   }

@@ -6,7 +6,7 @@ class Evaluation extends PureComponent {
     const { _id, remark, studentId, color} = this.props
 
     return(
-      <article className="batch">
+      <article className="evaluation">
         <h1>{ remark }</h1>
         <div>
           <p>{ color }</p>

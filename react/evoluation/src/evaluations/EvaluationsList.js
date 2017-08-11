@@ -15,6 +15,12 @@ class EvaluationsList extends PureComponent {
     }
 
   componentWillMount() {
+    debugger;
+      this.props.fetchEvaluations()
+      this.props.subscribeToEvaluationsService()
+  }
+
+  componentWillReceiveProps() {
       this.props.fetchEvaluations()
       this.props.subscribeToEvaluationsService()
   }
@@ -24,6 +30,8 @@ class EvaluationsList extends PureComponent {
   }
 
   render() {
+    if (!this.props.evaluations) return null
+
     return(
       <div className="evaluations wrapper">
         <main>
@@ -33,6 +41,11 @@ class EvaluationsList extends PureComponent {
     )
   }
 }
+
+// const mapStateToProps = (evaluations) => {
+//     evaluations
+//    console.log(evaluations)
+// }
 
 const mapStateToProps = (store) => {
   return {

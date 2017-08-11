@@ -9,7 +9,7 @@ import BatchEditor from './BatchEditor'
 import BatchesList from './BatchesList'
 import StudentsList from '../students/StudentsList'
 import EvaluationEditor from '../evaluations/evalEditor'
-import EvaluationList from '../evaluations/EvaluationsList'
+import EvaluationsList from '../evaluations/EvaluationsList'
 
 
 export class BatchPage extends PureComponent {
@@ -33,12 +33,12 @@ export class BatchPage extends PureComponent {
         <header>
           <Title content="Batches" />
           <Title content={ name } />
-          <EvaluationList />
+          <EvaluationsList />
           <BatchEditor />
           <EvaluationEditor />
         </header>
         // <StudentsList />
-        <EvaluationList />
+        <EvaluationsList />
       </div>
     )
   }

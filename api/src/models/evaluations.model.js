@@ -9,7 +9,7 @@ module.exports = function (app) {
     color: {type: String, },
     remark:  {type: String,},
     date: { type: Date, default: Date.now },
-    studentId: {},
+    studentId: {type: Object,},
     createdAt: { type: Date, default: Date.now },
     updatedAt: { type: Date, default: Date.now }
   });
